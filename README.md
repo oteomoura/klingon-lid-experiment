@@ -1,4 +1,4 @@
-# When Constructed Languages Outperform Real Ones: GlotLID's Surprising Performance on Low-Resource vs Constructed Languages
+# When Constructed Languages Outperform Real Ones: GlotLID's Surprising Performance on Low-Resource vs Artificial Languages
 
 ## Overview
 
