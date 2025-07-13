@@ -1,0 +1,129 @@
+{
+  "results": {
+    "klingon": {
+      "predictions": [
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__und_Tang",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__zxx_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__zxx_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn",
+        "__label__tlh_Latn"
+      ],
+      "confidences": [
+        1.0000100135803223,
+        1.0000096559524536,
+        0.5014103055000305,
+        1.0000098943710327,
+        1.0000029802322388,
+        1.0000100135803223,
+        1.0000100135803223,
+        1.0000100135803223,
+        1.0000100135803223,
+        0.9999929666519165,
+        0.9978628158569336,
+        0.9995129108428955,
+        0.9995129108428955,
+        0.9978997111320496,
+        0.9556595087051392,
+        0.9995129108428955,
+        1.0000067949295044,
+        0.9910061359405518,
+        1.0000097751617432,
+        0.9995953440666199,
+        1.000009298324585,
+        1.0000100135803223,
+        1.0000100135803223,
+        1.0000100135803223,
+        0.9993923902511597,
+        1.0000100135803223,
+        1.000009536743164,
+        1.0000087022781372,
+        1.0000100135803223,
+        0.9997352957725525,
+        1.0000100135803223,
+        1.0000100135803223,
+        1.0000048875808716,
+        0.9999790191650391,
+        0.9932861328125,
+        1.0000085830688477,
+        0.9999982118606567,
+        0.9999759197235107,
+        1.0000100135803223,
+        1.0000030994415283,
+        1.0000085830688477,
+        0.9473720788955688,
+        1.0000072717666626
+      ],
+      "correct_predictions": 40,
+      "klingon_predictions": 0,
+      "other_predictions": {
+        "__label__und_Tang": 1,
+        "__label__zxx_Latn": 2
+      }
+    }
+  },
+  "language_stats": {
+    "klingon": {
+      "total_sentences": 43,
+      "correct_predictions": 40,
+      "accuracy": 93.02325581395348,
+      "klingon_predictions": 0,
+      "klingon_rate": 0.0,
+      "most_common_misclassifications": [
+        [
+          "__label__zxx_Latn",
+          2
+        ],
+        [
+          "__label__und_Tang",
+          1
+        ]
+      ],
+      "average_confidence": 0.9856263676355052
+    }
+  },
+  "summary": {
+    "total_languages": 1,
+    "average_accuracy": 93.02325581395348,
+    "median_accuracy": 93.02325581395348,
+    "min_accuracy": 93.02325581395348,
+    "max_accuracy": 93.02325581395348
+  }
+}
