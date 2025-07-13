@@ -151,22 +151,21 @@ results, stats = run_low_resource_experiment()
 
 ## Key Findings
 
-### 1. Low-Resource Languages Can Perform Exceptionally Well
+### 1. Klingon Outperforms Many Real Languages
+- **Klingon (a constructed language) outperformed many real human languages** – achieving 93.0% accuracy and ranking 24th out of 54 languages
+- **26 low-resource languages performed worse than Klingon**, including Ngangela (16.0%), Lamnso (24.0%), Mixtec (44.0%), Maninka (48.0%), and many others
+- **This finding is particularly interesting** because it demonstrates that a constructed language can be easier for the model to identify than many real human languages, suggesting that the model's training data and architecture may be more effective for certain types of linguistic patterns
+- The original hypothesis that low-resource languages would be misclassified as Klingon was not supported, but the results revealed a more intriguing pattern about relative identification performance
+
+### 2. Low-Resource Languages Can Perform Exceptionally Well
 - **Yucatec Maya achieved 100% accuracy**, matching the performance of many major languages
 - Several low-resource languages (Greenlandic, Nahuatl, Amuesha, Luvale, Achuar) achieved 98% accuracy
-- This suggests that language identification performance can achieve decent results even with limited data availability
+- This suggests that language identification performance doesn't always correlate with resource availability
 
-### 2. Major Languages Perform as Expected
+### 3. Major Languages Perform as Expected
 - Most major languages achieved 100% accuracy
 - Spanish and German had the lowest accuracy among major languages (76.0%)
 - Overall average of 95.0% for major languages
-
-### 3. Klingon Misclassification Hypothesis
-
-- **Klingon (a constructed language) outperformed many real human languages** - achieving 93.0% accuracy and ranking 24th out of 54 languages
-- **26 low-resource languages performed worse than Klingon**, including Ngangela (16.0%), Lamnso (24.0%), Mixtec (44.0%), Maninka (48.0%), and many others
-- **This finding is particularly interesting** because it demonstrates that a constructed language can be easier for the model to identify than many real human languages, suggesting that the model's training data and architecture may be more effective for certain types of linguistic patterns
-- No languages were misclassified as Klingon (0% Klingon misclassification rate across all languages), which suggests it's a good baseline for correctly identifying an artificial language that's not mistaken with human ones.
 
 ### 4. Performance Variation
 - Low-resource languages showed high variability (16.0% to 100.0% accuracy)
