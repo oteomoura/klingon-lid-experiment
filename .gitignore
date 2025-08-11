@@ -63,3 +63,13 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp 
+
+# Keep CC-BY-SA text out of the repo by default
+dataset/wikipedia/cc_by_sa_text/*.jsonl
+dataset/wikipedia/cc_by_sa_text/*.txt
+dataset/wikipedia/cc_by_sa_text/*.md.json
+
+# but keep these metadata/docs tracked
+!dataset/wikipedia/cc_by_sa_text/README.md
+!dataset/wikipedia/cc_by_sa_text/ATTRIBUTIONS.md
+!dataset/wikipedia/cc_by_sa_text/LICENSE_CC_BY_SA
