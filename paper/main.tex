@@ -1,0 +1,91 @@
+% paper/main.tex — ACL-style
+\documentclass[11pt]{article}
+
+% Change "review" to "final" for camera-ready, or "preprint" for non-anonymous with page numbers.
+\usepackage[review]{acl}
+
+% Standard packages from the ACL template
+\usepackage{times}
+\usepackage{latexsym}
+
+% Encoding & microtypography (template defaults)
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{url}
+
+% --- Minimal extras we actually need ---
+% pdfLaTeX fix for modifier letter apostrophe U+02BC (e.g., Qʼeqchiʼ)
+\DeclareUnicodeCharacter{02BC}{'}
+
+% If you need more space for the title block, uncomment and set >= 5cm
+% \setlength\titlebox{5.5cm}
+
+\title{Small, License-Clean, and Balanced LID Eval with\\ Low-Resource \& Constructed Languages}
+
+\author{
+  Teogenes Moura \\
+  Independent Researcher \\
+  \texttt{\small github.com/oteomoura}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Language identification looks solved until you step off the happy path: scarce data, mixed scripts, romanization, and conlangs. We build a compact, license-clean evaluation set that deliberately mixes high-resource anchors (e.g., English, Portuguese), low/mid-resource languages (e.g., Amharic, Dzongkha, Yoruba), and constructed languages (e.g., Esperanto, Interlingua, Ido, Interlingue, Lojban, Toki Pona, Lingua Franca Nova, Volapük, Kotava). To stay redistribution-safe, Wikipedia is pointer-only; we materialize locally from pinned dumps. We round it out with Tatoeba (short user sentences) and UDHR translations (legal register), then run deduplication, script tagging, length bucketing, and a stratified split. The goal is pragmatic: a small, reproducible pack that exposes failure modes on scarce data and non-Latin scripts without licensing surprises.\footnote{Code/manifests: \url{https://github.com/oteomoura/klingon-lid-experiment}}
+\end{abstract}
+
+\section{Introduction}
+LID works great on the usual suspects and genres, but breaks in the corners we actually care about: truly low-resource languages, romanized text, and constructed languages that overlap vocabulary with Indo-European families. Rather than chasing scale, we aim for a \emph{small, reproducible, license-clean} evaluation pack:
+(i) easy to re-run and compare across models,
+(ii) diverse in scripts and domains, and
+(iii) explicit about scarcity so differences actually show up.
+
+\section{Method (overview)}
+Our pipeline is intentionally simple and scripted end-to-end:
+\begin{enumerate}
+  \item \textbf{Source discovery \& licensing.} Choose sources we can redistribute (or reference via pointers) and record terms in-repo.
+  \item \textbf{Collection.} Wikipedia (pointer-only), Tatoeba (CC-BY), UDHR translations (public document; CC0 packaging on HF).
+  \item \textbf{Normalization.} NFC, whitespace cleanup, light HTML stripping for Wikipedia.
+  \item \textbf{Balancing.} Tight per-language caps (\(\approx 200\)), with ultra-low languages kept at “all available”.
+  \item \textbf{P1-04/05 (next).} Dedup (exact + near-dup) and script/romanization tagging.
+  \item \textbf{Bucketing \& split.} Length buckets, then a stratified dev/test split.
+\end{enumerate}
+
+% --- Detailed collection steps live in this separate file ---
+\input{sections/data_collection}
+
+\section{Experiments}
+We will report: 
+(i) coverage per language and source,
+(ii) dedup rates,
+(iii) script distribution, and
+(iv) baseline LID accuracy by tier (anchors, mid, ultra-low, conlangs).
+Given the design, we expect most mistakes around romanization, visually similar scripts, and conlangs overlapping with Romance/Germanic vocab.
+% TODO(teo): insert tables/figures after dedup+tagging and the split.
+
+\section{Results}
+% Placeholder; filled after running P1-04/05 and the split.
+We will include per-language accuracy, confusion patterns, and ablations on script/romanization handling.
+
+\section*{Limitations}
+Wikipedia changes over time; we pin dump IDs to reduce drift but do not freeze upstream. Domains differ by source (encyclopedic vs.\ legal vs.\ short sentences), which we embrace to probe robustness but it is still a bias. For \texttt{kek} and \texttt{fuf}, upstream sources cap the absolute amount of text; we keep all available and analyze them as scarcity cases.
+
+\section*{Ethics Statement}
+We use publicly available data with permissive terms (or pointer-only for ShareAlike sources). We avoid redistributing SA text directly and document licenses in-repo. Scripts include non-Latin writing systems; we take care to avoid romanization “over-correction” during normalization.
+
+\section*{Acknowledgments}
+Thanks to Wikimedia, Tatoeba, and the maintainers of the UDHR-LID packaging for making this work feasibly reproducible.
+
+\nocite{wikimedia_wikipedia_hf,tatoeba_project,cis_lmu_udhr_lid,unicode_udhr_xml}
+\bibliography{custom}
+
+\appendix
+\section{Reproducibility \& Code}
+\label{sec:repro}
+Repo and manifests: \url{https://github.com/oteomoura/klingon-lid-experiment}.
+Re-run instructions are encoded as \texttt{make} targets (pointer-only for Wikipedia; local JSONL for Tatoeba/UDHR).
+\end{document}

@@ -1,0 +1,31 @@
+\section{Data Collection}
+\label{sec:data-collection}
+
+Our goal was to assemble a small, \emph{license-clean} and \emph{balanced} evaluation set for language identification (LID) that stresses both high-resource anchors and genuinely low-resource or constructed languages. We combine three complementary sources—Wikipedia (encyclopedic prose), Tatoeba (short, user-contributed sentences), and UDHR translations (legal register)—and capture every step in code and manifests for reproducibility.
+
+\subsection{Language set and acceptance criteria}
+Languages were selected by four criteria: (i) availability from at least one permissive source we can redistribute or reproduce, (ii) diversity of writing systems (Latin, Arabic, Ethiopic, Georgian, Lao, Khmer, Myanmar, Tibetan, CJK), (iii) a balanced per-language target size (nominally $\sim$200 items), and (iv) inclusion of low-resource and constructed languages to stress LID.
+
+\noindent\textbf{Sets used.}
+\begin{itemize}
+  \item \textbf{Anchors (high-resource):} en, pt, es, tr, ja.
+  \item \textbf{Constructed:} eo, ia, io, ie, lfn, vo, avk, jbo, tok.
+  \item \textbf{Low/mid-resource:} am (Amharic), ka (Georgian), ur (Urdu), lo (Lao), km (Khmer), my (Burmese), dz (Dzongkha), yo (Yorùbá); plus ultra-low \emph{kek} (Qʼeqchiʼ) and \emph{fuf} (Pular/Fulfulde).
+\end{itemize}
+When upstream sources could not reach the nominal cap (e.g., \texttt{kek}, \texttt{fuf}), we retained \emph{all} available items and treat them explicitly as scarcity cases.
+
+\subsection{Licensing and storage policy}
+\textbf{Wikipedia.} Because Wikipedia text is CC BY-SA, we do not commit text. We pin a specific dump (20231101.\textit{xx}) and commit \emph{pointer manifests} (page/revision IDs), together with code that locally materializes the text for evaluation. This keeps the repository non-SA while preserving exact reproducibility from the pinned dump.
+
+\noindent\textbf{Tatoeba.} Sentences are CC BY 2.0 FR. We map project codes to ISO–639–3, select per-language subsets, and commit the derived JSONL with attribution in paper/README.
+
+\noindent\textbf{UDHR.} The UDHR text is public; we use the \emph{UDHR-LID} packaging distributed on Hugging Face (CC0 for the dataset wrapper). We fetch by language code and commit the resulting JSONL with provider information.
+
+\subsection{Source ingestion and normalization}
+\textbf{Wikipedia (pointer-only).} From \texttt{wikimedia/wikipedia} Parquet shards for dump 20231101.\textit{xx}, we uniformly sample up to 120 articles per language and store only pointers (page + revision). Locally materialized text is normalized and kept out of version control.
+
+\noindent\textbf{Tatoeba.} We stream the master \texttt{sentences.csv}, map our project codes (2-letter or 3-letter) to ISO–639–3 (as used by Tatoeba), and select up to 120 sentences per target language with light character-length filtering (short lines preserved to avoid style bias).
+
+\noindent\textbf{UDHR.} We fetch up to 120 segments per language via the UDHR-LID HF packaging. In practice, useful coverage for the low/mid set required a permissive minimum-length threshold; we settled on a small cutoff (effectively admitting short provisions) and rely on later balancing in the split.
+
+\noindent\textbf{Text normalization (all sources).} We apply NFC normalization, collapse internal whitespace, and drop residual markup. Each JSON object records \texttt{text}, \texttt{source} (wikipedia/tatoeba/udhr-lid), \texttt{domain} (encyclopedic/sentences/legal), \texttt{lang} (project code), \texttt{code} (ISO–639–3 where applicable), licensing/provider fields, and a minimal \texttt{

@@ -72,4 +72,7 @@ dataset/wikipedia/cc_by_sa_text/*.md.json
 # but keep these metadata/docs tracked
 !dataset/wikipedia/cc_by_sa_text/README.md
 !dataset/wikipedia/cc_by_sa_text/ATTRIBUTIONS.md
-!dataset/wikipedia/cc_by_sa_text/LICENSE_CC_BY_SA
+!dataset/wikipedia/cc_by_sa_text/LICENSE_CC_BY_SAdataset/processed/*.jsonl
+dataset/raw/**/*.jsonl
+dataset/processed/*.jsonl
+dataset/raw/**/*.jsonl

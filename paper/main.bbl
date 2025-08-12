@@ -1,0 +1,28 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{{CIS LMU}(2024)}]{cis_lmu_udhr_lid}
+{CIS LMU}. 2024.
+\newblock Udhr-lid: Universal declaration of human rights (lid) dataset.
+\newblock \url{https://huggingface.co/datasets/cis-lmu/udhr-lid}.
+\newblock CC0-1.0 packaging; accessed 2025-08-11.
+
+\bibitem[{{Tatoeba Project}(2025)}]{tatoeba_project}
+{Tatoeba Project}. 2025.
+\newblock Tatoeba: Example sentences in many languages.
+\newblock \url{https://tatoeba.org/}.
+\newblock CC-BY 2.0 FR; accessed 2025-08-11.
+
+\bibitem[{{Unicode Consortium}(2016)}]{unicode_udhr_xml}
+{Unicode Consortium}. 2016.
+\newblock The universal declaration of human rights (udhr) in unicode.
+\newblock \url{https://www.unicode.org/udhr/}.
+\newblock XML assemblies of UDHR translations; accessed 2025-08-11.
+
+\bibitem[{{Wikimedia Foundation}(2023)}]{wikimedia_wikipedia_hf}
+{Wikimedia Foundation}. 2023.
+\newblock Wikipedia dataset (parquet) on hugging face.
+\newblock \url{https://huggingface.co/datasets/wikimedia/wikipedia}.
+\newblock Dump 20231101; pointer-only in our repo; accessed 2025-08-11.
+
+\end{thebibliography}
