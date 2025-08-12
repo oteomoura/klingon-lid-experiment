@@ -1,0 +1,37 @@
+# ---- Tatoeba + UDHR ingestion (P1-03) ----
+PY ?= python
+
+# Tatoeba
+TATOEBA_INPUT ?= data/tatoeba/sentences.csv.bz2
+TATOEBA_LANGS ?= en pt es tr ja eo ia jbo tok yo lfn io ie vo avk
+TATOEBA_SAMPLES ?= 120
+
+.PHONY: tatoeba-all tatoeba-one
+tatoeba-all: ## Convert Tatoeba sentences to JSONL for TATOEBA_LANGS
+	@for L in $(TATOEBA_LANGS); do \
+		echo "==> $$L (tatoeba)"; \
+		$(PY) scripts/tatoeba_to_jsonl.py --input $(TATOEBA_INPUT) --langs $$L --samples $(TATOEBA_SAMPLES) --out-prefix dataset || exit $$?; \
+	done
+
+tatoeba-one: ## One language: make tatoeba-one L=eo INPUT=path/to/sentences.csv.bz2
+	@test -n "$(L)" || (echo "Usage: make tatoeba-one L=<code>"; exit 2)
+	@$(PY) scripts/tatoeba_to_jsonl.py --input $(INPUT) --langs $(L) --samples $(TATOEBA_SAMPLES) --out-prefix dataset
+
+# UDHR (OHCHR)
+UDHR_LANGS ?= am ka kek fuf ur lo km my dz yo
+UDHR_MIN_CHARS ?= 60
+UDHR_MAX_SAMPLES ?= 150
+
+.PHONY: udhr-pointers udhr-fetch udhr-one
+udhr-pointers: ## Build UDHR pointer manifests for UDHR_LANGS (reads dataset/sources/sources.csv)
+	@mkdir -p dataset/udhr/pointers
+	@$(PY) scripts/udhr_pointer_poc.py build --codes $(UDHR_LANGS) --sources dataset/sources/sources.csv --out-dir dataset/udhr/pointers
+
+udhr-fetch: ## Fetch UDHR pages listed in pointers and write processed JSONL (keep out of git)
+	@for L in $(UDHR_LANGS); do \
+		mani=dataset/udhr/pointers/$$L.jsonl; \
+		out=dataset/processed/$$L.udhr.jsonl; \
+		if [ ! -f $$mani ]; then echo "skip $$L (no $$mani)"; continue; fi; \
+		echo "==> $$L (udhr fetch)"; \
+		$(PY) scripts/udhr_pointer_poc.py fetch --manifest $$mani --out $$out --min-chars $(UDHR_MIN_CHARS) --max-samples $(UDHR_MAX_SAMPLES); \
+	done

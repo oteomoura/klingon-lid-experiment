@@ -1,0 +1,12 @@
+project_code,iso3,kept,seen_in_dump,samples_cap,input,min_chars,max_chars
+am,amh,120,308,120,data/tatoeba/sentences.csv,3,400
+ka,kat,120,7086,120,data/tatoeba/sentences.csv,3,400
+ur,urd,120,2774,120,data/tatoeba/sentences.csv,3,400
+lo,lao,120,229,120,data/tatoeba/sentences.csv,3,400
+km,khm,120,2462,120,data/tatoeba/sentences.csv,3,400
+my,mya,120,583,120,data/tatoeba/sentences.csv,3,400
+dz,dzo,0,0,120,data/tatoeba/sentences.csv,3,400
+yo,yor,115,115,120,data/tatoeba/sentences.csv,3,400
+kek,kek,18,24,120,data/tatoeba/sentences.csv,10,400
+fuf,fuf,0,0,120,data/tatoeba/sentences.csv,10,400
+fuf,fuf,0,0,200,data/tatoeba/sentences.csv,1,400
